@@ -1,0 +1,31 @@
+extends layout
+
+block content
+
+  .container
+    .row 
+      .col-md
+        .container.add-user
+          form(method='POST' action='/addUser')
+            .input-group
+              .input-group-prepend
+                .input-group-text 
+                  | Add new user
+              input.form-control(type='text' name='userName' placeholder='name' aria required minlength="5" maxlength="15" 
+                                 oninvalid="this.setCustomValidity('Please, enter name between 5 and 15 characters')"
+                                 oninput="setCustomValidity('')")
+              button.btn.btn-primary(type='submit')
+                | Add 
+
+      .col.-md
+          .container.main-table.my-custom-scrollbar.table-wrapper-scroll-y
+            table.table.table-striped.table-hover.border.border-primary.table-bordered
+                thead.thead-dark
+                  tr
+                    th ID 
+                    th Name 
+                tbody
+                  each row in rows
+                    tr
+                      td.id-colum= row['id']
+                      td= row['name']

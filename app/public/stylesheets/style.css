@@ -1,0 +1,31 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.main-table{
+  width: 60%;
+  text-align: center;
+}
+
+.id-colum{
+  font-weight: bold;
+}
+
+.add-user{
+  width: 80%;
+  margin-bottom: 2%;
+}
+
+.my-custom-scrollbar {
+  position: relative;
+  height: 500px;
+  overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+  display: block;
+  }
