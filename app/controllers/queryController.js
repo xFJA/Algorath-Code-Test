@@ -62,7 +62,7 @@ const getNoFriends = (id, callback) => {
   });
 
   db.serialize(() => {
-    db.all(`SELECT u.id, u.name FROM User u, Friendship f WHERE u.id NOT IN (SELECT u.id FROM User u, Friendship f WHERE u.id = f.user2 AND f.user1 = ?)`,id, (err, rows) => {
+    db.all(`SELECT u.id, u.name FROM User u WHERE u.id NOT IN (SELECT u.id FROM User u, Friendship f WHERE u.id = f.user2 AND f.user1 = ?) AND u.id != ?`,id,id, (err, rows) => {
         if(err){
             console.error(err.message);
         }else{
