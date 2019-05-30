@@ -1,18 +1,17 @@
 extends layout
 
 block content
-
-  .container
-    .row 
-      .col
-        .container#selected-info
-          .card
-            img#avatar.card-img-top(src='https://www.w3schools.com/bootstrap4/img_avatar3.png') 
-            .container.card-body
-              h5 Id: idSelected
-              h5 Name : nameSelected
-
-      .col-6
+  form(id='friends-form' method='post' action='/friend') 
+    .container-fluid.text-center
+      .row.content
+        .col-sm-2.sidenav
+            .container#selected-info.user-info
+              .card
+                img#avatar.card-img-top(src='https://www.w3schools.com/bootstrap4/img_avatar3.png') 
+                .container.card-body
+                  h5 Id: #{idSelected}
+                  h5 Name : #{nameSelected}
+        .col-sm-8.text-left 
           #table1.container.main-table.my-custom-scrollbar.table-wrapper-scroll-y
             table.table.table-striped.table-hover.border.border-primary.table-bordered
                 thead.thead-dark
@@ -27,20 +26,17 @@ block content
                       td= row['name']
                       td
                        input(type='radio' name="rowSelect" value=row['id'])
-      form(id='friends-form' method='get' action='/getFriends')
-        .col
-          .hide
-              .container#selected-info
-                .card
-                  img#avatar.card-img-top(src='https://www.w3schools.com/bootstrap4/img_avatar3.png') 
-                  .container.card-body
-                    h5.selected-id
-                    h5#selected-name
-                    |
-                    hr
-                    | 
-                    button.btn.btn-primary(type='submit')
-                      | Find friends
-                    input.selected-id(type='hidden' name='id' value='')
- 
+        .col-sm-2.sidenav 
+            .container#selected-info.user-info.hide
+                  .card
+                        img#avatar.card-img-top(src='https://www.w3schools.com/bootstrap4/img_avatar5.png') 
+                        .container.card-body
+                          h5.selected-id
+                          h5.selected-name
+                          input(type='hidden' name='id1' value= idSelected)
+                          input.selected-id(type='hidden' name='id2' value='')
+
+      .row.content
+        .col-sm
+          button#button-confirm.hide.btn.btn-primary.btn-lg(type='submit')  CONFIRM CONECCTION
 

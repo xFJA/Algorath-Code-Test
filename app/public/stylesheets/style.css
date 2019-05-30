@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -8,12 +7,18 @@ a {
 }
 
 .main-table{
-  width: 60%;
+  width: 50%;
   text-align: center;
 }
 
 .id-colum{
   font-weight: bold;
+}
+
+#table1{
+  margin-top: 50px;
+  width: 500px;
+  vertical-align: center;
 }
 
 .add-user{
@@ -30,7 +35,7 @@ a {
   }
 
 #avatar{
-  width: 300px;
+  max-width: 100%;
   height: auto;
 
   display: block;
@@ -44,4 +49,41 @@ a {
   visibility: hidden;
 }
 
+.user-info{
+  width: 300px;
+  margin-top: 50px;
+}
+
+#button-confirm{
+  margin-top:200px;
+}
+
+.navbar-element{
+  float: right;
+}
+
+
+/* Remove the navbar's default margin-bottom and rounded borders */ 
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 450px}
+
+/* Set gray background color and 100% height */
+.sidenav {
+  padding-top: 20px;
+  height: 100%;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {height:auto;} 
+}
 

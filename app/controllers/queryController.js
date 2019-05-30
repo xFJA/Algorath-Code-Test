@@ -62,7 +62,7 @@ const getNoFriends = (id, callback) => {
   });
 
   db.serialize(() => {
-    db.all(`SELECT u.id, u.name FROM User u, Friendship f WHERE u.id != f.user2 AND f.user1 = ?`,id, (err, rows) => {
+    db.all(`SELECT u.id, u.name FROM User u, Friendship f WHERE u.id NOT IN (SELECT u.id FROM User u, Friendship f WHERE u.id = f.user2 AND f.user1 = ?)`,id, (err, rows) => {
         if(err){
             console.error(err.message);
         }else{
@@ -79,7 +79,6 @@ const getNoFriends = (id, callback) => {
 };
 
 const addUser = (name, callback) => {
-  let users;
   let db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
     if (err) {
       console.error(err.message);
@@ -88,7 +87,7 @@ const addUser = (name, callback) => {
   });
 
   db.serialize(() => {
-    db.all(`INSERT INTO User(name) VALUES(?)`, name ,(err, rows) => {
+    db.all(`INSERT INTO User(name) VALUES(?)`, name ,(err) => {
         if(err){
             console.error(err.message);
         }else{
@@ -99,16 +98,54 @@ const addUser = (name, callback) => {
             console.log('Closed the database connection');
         });
         }
-          callback(rows);
+        callback();
     })
   });
 };
 
+const addRelationship = (id1,id2, callback) => {
+  let db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
+    if (err) {
+      console.error(err.message);
+    }
+    console.log("Connected to the database");
+  });
 
+  db.serialize(() => {
+    db.all(`INSERT INTO Friendship(user1, user2) VALUES(?,?)`, id1, id2 ,(err) => {
+        if(err){
+            console.error(err.message);
+        }else{
+          db.close((err) => {
+            if (err){
+                console.error(err.message);
+            }
+            console.log('Closed the database connection');
+        });
+        }
+    })
+  });
+  db.serialize(() => {
+    db.all(`INSERT INTO Friendship(user1, user2) VALUES(?,?)`, id2, id1 ,(err) => {
+        if(err){
+            console.error(err.message);
+        }else{
+          db.close((err) => {
+            if (err){
+                console.error(err.message);
+            }
+            console.log('Closed the database connection');
+        });
+        }
+    })
+  });
+  callback();
+};
 
 module.exports = {
   getAllUsers,
   addUser,
   getFriends,
-  getNoFriends
+  getNoFriends,
+  addRelationship
 };

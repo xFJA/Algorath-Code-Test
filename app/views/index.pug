@@ -1,23 +1,23 @@
 extends layout
 
 block content
-
-  .container
-    .row 
-      .col
-        .container.add-user
-          form(method='POST' action='/addUser')
-            .input-group.float
-              .input-group-prepend
-                .input-group-text 
-                  | Add new user
-              input.form-control(type='text' id='userName' name='userName' placeholder='name' aria required minlength="5" maxlength="15" 
+  
+  nav.navbar.navbar-expand-lg.navbar-light.bg-primary.justify-content-end
+    .container.add-user
+      form.form-inline(method='POST' action='/addUser')
+        .input-group
+          .input-group-prepend
+            input.form-control(type='text' id='userName' name='userName' placeholder='Enter new user name' aria required minlength="5" maxlength="15" 
                                  oninvalid="this.setCustomValidity('Please, enter name between 5 and 15 characters')"
                                  oninput="setCustomValidity('')")
-              button.btn.btn-primary(type='submit')
-                | Add 
+            button.btn.btn-dark(type='submit')
+               | +
 
-      .col-6
+  .container-fluid.text-center
+    .row.content
+      .col-sm-2.sidenav
+
+      .col-sm-8.text-left 
           #table1.container.main-table.my-custom-scrollbar.table-wrapper-scroll-y
             table.table.table-striped.table-hover.border.border-primary.table-bordered
                 thead.thead-dark
@@ -32,10 +32,10 @@ block content
                       td= row['name']
                       td
                        input(type='radio' name="rowSelect" value=row['id'])
-      form(id='friends-form' method='get' action='/user')
-        .col
-          .hide
-              .container#selected-info
+      
+      .col-sm-2.sidenav
+        form(id='friends-form' method='get' action='/user')
+              .container#selected-info.user-info.hide
                 .card
                   img#avatar.card-img-top(src='https://www.w3schools.com/bootstrap4/img_avatar3.png') 
                   .container.card-body
