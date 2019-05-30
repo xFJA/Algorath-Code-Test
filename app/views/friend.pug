@@ -5,17 +5,12 @@ block content
   .container
     .row 
       .col
-        .container.add-user
-          form(method='POST' action='/addUser')
-            .input-group.float
-              .input-group-prepend
-                .input-group-text 
-                  | Add new user
-              input.form-control(type='text' id='userName' name='userName' placeholder='name' aria required minlength="5" maxlength="15" 
-                                 oninvalid="this.setCustomValidity('Please, enter name between 5 and 15 characters')"
-                                 oninput="setCustomValidity('')")
-              button.btn.btn-primary(type='submit')
-                | Add 
+        .container#selected-info
+          .card
+            img#avatar.card-img-top(src='https://www.w3schools.com/bootstrap4/img_avatar3.png') 
+            .container.card-body
+              h5 Id: idSelected
+              h5 Name : nameSelected
 
       .col-6
           #table1.container.main-table.my-custom-scrollbar.table-wrapper-scroll-y
@@ -32,7 +27,7 @@ block content
                       td= row['name']
                       td
                        input(type='radio' name="rowSelect" value=row['id'])
-      form(id='friends-form' method='get' action='/user')
+      form(id='friends-form' method='get' action='/getFriends')
         .col
           .hide
               .container#selected-info
@@ -40,15 +35,12 @@ block content
                   img#avatar.card-img-top(src='https://www.w3schools.com/bootstrap4/img_avatar3.png') 
                   .container.card-body
                     h5.selected-id
-                    h5.selected-name
+                    h5#selected-name
                     |
                     hr
                     | 
-                    button.btn.btn-primary(type='submit' name='button' value='find')
+                    button.btn.btn-primary(type='submit')
                       | Find friends
-                    button.float-right.btn.btn-primary(type='submit' name='button' value='add')
-                      | Add friend
                     input.selected-id(type='hidden' name='id' value='')
-                    input.selected-name(type='hidden' name='name' value='')
  
 

@@ -28,6 +28,56 @@ const getAllUsers = (callback) => {
   });
 };
 
+const getFriends = (id, callback) => {
+  let db = new sqlite3.Database(dbPath, sqlite3.OPEN_READONLY, (err) => {
+    if (err) {
+      console.error(err.message);
+    }
+    console.log("Connected to the database");
+  });
+
+  db.serialize(() => {
+    db.all(`SELECT u.id, u.name FROM User u, Friendship f WHERE u.id = f.user2 AND f.user1 = ?`,id, (err, rows) => {
+        if(err){
+            console.error(err.message);
+        }else{
+          db.close((err) => {
+            if (err){
+                console.error(err.message);
+            }
+            console.log('Closed the database connection');
+        });
+        }
+          callback(rows);
+    })
+  });
+};
+
+const getNoFriends = (id, callback) => {
+  let db = new sqlite3.Database(dbPath, sqlite3.OPEN_READONLY, (err) => {
+    if (err) {
+      console.error(err.message);
+    }
+    console.log("Connected to the database");
+  });
+
+  db.serialize(() => {
+    db.all(`SELECT u.id, u.name FROM User u, Friendship f WHERE u.id != f.user2 AND f.user1 = ?`,id, (err, rows) => {
+        if(err){
+            console.error(err.message);
+        }else{
+          db.close((err) => {
+            if (err){
+                console.error(err.message);
+            }
+            console.log('Closed the database connection');
+        });
+        }
+          callback(rows);
+    })
+  });
+};
+
 const addUser = (name, callback) => {
   let users;
   let db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
@@ -58,5 +108,7 @@ const addUser = (name, callback) => {
 
 module.exports = {
   getAllUsers,
-  addUser
+  addUser,
+  getFriends,
+  getNoFriends
 };
