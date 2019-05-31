@@ -8,6 +8,14 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/chart', function(req, res, next) {
+  queryController.getAllUsers(function(dataUsers){
+    queryController.getAllRelationships(function(dataRelationships){   
+      return res.render('chart', {users: dataUsers, relationships: dataRelationships});
+    });
+  });
+});
+
 router.get('/user', function(req, res, next) {
   var type = req.query.button;
   if(type=='add'){

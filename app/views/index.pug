@@ -1,26 +1,36 @@
 extends layout
 
 block content
-  
-  nav.navbar.navbar-expand-lg.navbar-light.bg-primary.justify-content-end
-    .container.add-user
-      form.form-inline(method='POST' action='/addUser')
-        .input-group
-          .input-group-prepend
-            input.form-control(type='text' id='userName' name='userName' placeholder='Enter new user name' aria required minlength="5" maxlength="15" 
-                                 oninvalid="this.setCustomValidity('Please, enter name between 5 and 15 characters')"
-                                 oninput="setCustomValidity('')")
-            button.btn.btn-dark(type='submit')
-               | +
+  nav.navbar.bg-primary
+    .container-fluid
+      a#a-title.navbar-brand(href='/') Algorath
+      i.fa.fa-bar-chart(style='font-size:24px;color:white')
+      a#a-chart.mr-auto(href='/chart') Generate chart
+      
+
+
 
   .container-fluid.text-center
     .row.content
-      .col-sm-2.sidenav
+      .col-sm-3.sidenav
+        
+      
+        .container.add-user.mr-auto
+          form(method='POST' action='/addUser')
+            .input-group
+              .input-group-prepend
+                .input-group-text
+                  | Add user
+              input.form-control(type='text' id='userName' name='userName' placeholder='name' aria required minlength="5" maxlength="15" 
+                                     oninvalid="this.setCustomValidity('Please, enter name between 5 and 15 characters')"
+                                     oninput="setCustomValidity('')")
+              button.btn.btn-primary(type='submit')
+                   | +
 
-      .col-sm-8.text-left 
+      .col-sm-6
           #table1.container.main-table.my-custom-scrollbar.table-wrapper-scroll-y
             table.table.table-striped.table-hover.border.border-primary.table-bordered
-                thead.thead-dark
+                thead.bg-primary
                   tr
                     th ID 
                     th NAME 
@@ -33,7 +43,8 @@ block content
                       td
                        input(type='radio' name="rowSelect" value=row['id'])
       
-      .col-sm-2.sidenav
+      .col-sm-3.sidenav
+
         form(id='friends-form' method='get' action='/user')
               .container#selected-info.user-info.hide
                 .card

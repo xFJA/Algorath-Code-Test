@@ -2,13 +2,36 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+#a-title{
+  color: white;
+  font-weight: 300;
+  font-size: 35px;
+  margin-right: 50px;
 }
 
+#a-chart{
+  color:white;
+  font-weight: 150;
+  font-size:20px;
+  margin-left: 5px;
+}
 .main-table{
   width: 50%;
   text-align: center;
+}
+
+th{
+  color:white;
+}
+
+
+#alert-index{
+  margin-top:10px;
+  width: 300px;
+  text-align: center;
+  vertical-align: center;
+  margin-left: 25%;
+  margin-right: 25%;
 }
 
 .id-colum{
@@ -16,7 +39,7 @@ a {
 }
 
 #table1{
-  margin-top: 50px;
+  margin-top: 30px;
   width: 500px;
   vertical-align: center;
 }
@@ -55,12 +78,9 @@ a {
 }
 
 #button-confirm{
-  margin-top:200px;
+  margin-top:10px;
 }
 
-.navbar-element{
-  float: right;
-}
 
 
 /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -74,7 +94,7 @@ a {
 
 /* Set gray background color and 100% height */
 .sidenav {
-  padding-top: 20px;
+  margin-top: 30px;
   height: 100%;
 }
 

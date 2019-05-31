@@ -1,20 +1,28 @@
 extends layout
 
 block content
+
+  nav.navbar.bg-primary
+    .container-fluid
+      a#a-title.navbar-brand(href='/') Algorath
+      i.fa.fa-bar-chart(style='font-size:24px;color:white')
+      a#a-chart.mr-auto(href='/chart') Generate chart
+
+
   form(id='friends-form' method='post' action='/friend') 
     .container-fluid.text-center
       .row.content
-        .col-sm-2.sidenav
+        .col-sm-3.sidenav
             .container#selected-info.user-info
               .card
                 img#avatar.card-img-top(src='https://www.w3schools.com/bootstrap4/img_avatar3.png') 
                 .container.card-body
                   h5 Id: #{idSelected}
                   h5 Name : #{nameSelected}
-        .col-sm-8.text-left 
+        .col-sm-6.text-left 
           #table1.container.main-table.my-custom-scrollbar.table-wrapper-scroll-y
             table.table.table-striped.table-hover.border.border-primary.table-bordered
-                thead.thead-dark
+                thead.bg-primary
                   tr
                     th ID 
                     th NAME 
@@ -26,7 +34,7 @@ block content
                       td= row['name']
                       td
                        input(type='radio' name="rowSelect" value=row['id'])
-        .col-sm-2.sidenav 
+        .col-sm-3.sidenav 
             .container#selected-info.user-info.hide
                   .card
                         img#avatar.card-img-top(src='https://www.w3schools.com/bootstrap4/img_avatar5.png') 
@@ -35,8 +43,10 @@ block content
                           h5.selected-name
                           input(type='hidden' name='id1' value= idSelected)
                           input.selected-id(type='hidden' name='id2' value='')
+                          button.float-right.btn.btn-primary(type='submit' name='button' value='confirm') CONFIRM CONNECTION
+              
 
       .row.content
         .col-sm
-          button#button-confirm.hide.btn.btn-primary.btn-lg(type='submit')  CONFIRM CONECCTION
+          
 

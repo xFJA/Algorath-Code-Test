@@ -1,0 +1,65 @@
+doctype html
+html
+  head
+    title Chart
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/chart.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js")
+
+    script(src="/scripts/sigma/build/sigma.min.js")
+    
+  body
+    block content
+      nav.navbar.bg-primary
+        .container-fluid
+          a#a-title.navbar-brand(href='/') Algorath
+          i.fa.fa-bar-chart(style='font-size:24px;color:white')
+          a#a-chart.mr-auto(href='/chart') Generate chart
+
+      h2#title-chart Users connections
+
+      #sigma-container
+      script(type='text/javascript'). 
+        var users = !{JSON.stringify(users)};
+        var relationships = !{JSON.stringify(relationships)};
+      script. 
+            var i,
+                N = users.length,
+                E = relationships.length,
+                g = {
+                  nodes: [],
+                  edges: []
+                };
+            console.log(relationships)
+            for (i = 0; i < N; i++){
+              g.nodes.push({
+                id: users[i].id,
+                label: users[i].name,
+                x: Math.random(),
+                y: Math.random(),
+                size: 4,
+                color: '#FF0000'
+              });
+            }
+              console.log(E);
+            for (i = 0; i < E; i++){
+              var n1= Number(relationships[i].user1);
+              var n2= Number(relationships[i].user2);
+                g.edges.push({
+                  id: 'e' + i,
+                  source: n1,
+                  target: n2,
+                  size: 4,
+                  color: '#010101'
+                });
+            }
+              
+            // Instantiate sigma:
+            s = new sigma({
+              graph: g,
+              container: 'sigma-container'
+            });
+                  //script(src="javascripts/chartSigma.js")
+
