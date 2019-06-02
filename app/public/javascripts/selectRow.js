@@ -12,6 +12,9 @@ $(document).ready(function() {
         $('.selected-id').text("Id: "+id);
         $('.selected-id').val(id);
         $('.hide').removeClass('hide');
+        $('.visible').addClass('hide-permanent');
+        $('.visible').removeClass('visible');
+        
 
     });
   });

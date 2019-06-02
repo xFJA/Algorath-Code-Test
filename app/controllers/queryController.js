@@ -3,16 +3,16 @@ const path = require('path')
 const dbPath = path.resolve(__dirname, 'database.sqlite')
 
 
-const getAllUsers = (callback) => {
+const getAllUsers = (order, callback) => {
   let db = new sqlite3.Database(dbPath, sqlite3.OPEN_READONLY, (err) => {
     if (err) {
       console.error(err.message);
     }
     console.log("Connected to the database");
   });
-
+  var query = (order) ? `SELECT * FROM User` : `SELECT * FROM User ORDER BY id DESC`; 
   db.serialize(() => {
-    db.all(`SELECT * FROM User`, (err, rows) => {
+    db.all(query, (err, rows) => {
         if(err){
             console.error(err.message);
         }else{

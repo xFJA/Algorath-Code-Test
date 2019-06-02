@@ -3,13 +3,13 @@ var router = express.Router();
 var queryController = require('.././controllers/queryController.js');
 
 router.get('/', function(req, res, next) {
-  queryController.getAllUsers(function(data){
+  queryController.getAllUsers(false, function(data){
     return res.render('index', {rows: data});
   });
 });
 
 router.get('/chart', function(req, res, next) {
-  queryController.getAllUsers(function(dataUsers){
+  queryController.getAllUsers(true,function(dataUsers){
     queryController.getAllRelationships(function(dataRelationships){   
       return res.render('chart', {users: dataUsers, relationships: dataRelationships});
     });

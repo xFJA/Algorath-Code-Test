@@ -20,6 +20,8 @@ block content
                   h5 Id: #{idSelected}
                   h5 Name : #{nameSelected}
         .col-sm-6.text-left 
+          #message-info.alert.alert-primary.visible(role='alert')
+            | Select from the list a person!
           #table1.container.main-table.my-custom-scrollbar.table-wrapper-scroll-y
             table.table.table-striped.table-hover.border.border-primary.table-bordered
                 thead.bg-primary
@@ -45,7 +47,6 @@ block content
                           input.selected-id(type='hidden' name='id2' value='')
                           button.float-right.btn.btn-primary(type='submit' name='button' value='confirm') CONFIRM CONNECTION
               
-
       .row.content
         .col-sm
           

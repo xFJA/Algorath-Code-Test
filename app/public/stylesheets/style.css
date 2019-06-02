@@ -72,6 +72,10 @@ th{
   visibility: hidden;
 }
 
+.hide-permanent{
+  visibility: hidden;
+}
+
 .user-info{
   width: 300px;
   margin-top: 50px;
@@ -107,3 +111,13 @@ th{
   .row.content {height:auto;} 
 }
 
+#message-info{
+  margin-right: 100px;
+  font-weight: 400;
+  width: 300px;
+  margin-top: 10px;
+  text-align: center;
+  vertical-align: center;
+  margin-left: 33%;
+  margin-right: 33%;
+}
